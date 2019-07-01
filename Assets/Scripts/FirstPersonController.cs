@@ -193,7 +193,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
             }
-            Debug.Log(m_MoveDir);
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);
@@ -276,7 +275,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
 
-            Debug.Log(this.name + " test: " + horizontal + " , " + vertical);
             bool waswalking = m_IsWalking;
 
 #if !MOBILE_INPUT

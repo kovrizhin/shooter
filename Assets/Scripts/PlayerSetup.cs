@@ -12,6 +12,8 @@ public class PlayerSetup : NetworkBehaviour
     Behaviour[] componentsToDisable;
     [SerializeField]
     private Camera sceneCamera;
+    [SerializeField]
+    private AudioListener audioListener;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +24,11 @@ public class PlayerSetup : NetworkBehaviour
                 componentsToDisable[i].enabled = false;
             }
             gameObject.layer = LayerMask.NameToLayer("RemotePlayer");
+            audioListener.enabled = false;
         }
         else
         {
+            audioListener.enabled = true;
             if (sceneCamera != null)
             {
                 sceneCamera.gameObject.SetActive(false);

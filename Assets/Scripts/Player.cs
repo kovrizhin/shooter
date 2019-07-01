@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Animator))]
 public class Player : NetworkBehaviour
 {
     [SerializeField]
@@ -15,22 +16,28 @@ public class Player : NetworkBehaviour
     [SerializeField]
     private Text health;
 
+    private Actions actions;
+
     private void Awake()
     {
         curHealth = maxHealth;
+        actions = GetComponent<Actions>();
         //info.text = "";
-       // health.text = curHealth.ToString();
+        // health.text = curHealth.ToString();
     }
 
     public void takeDamage(float hit)
     {
         curHealth -= hit;
-        Debug.Log("Current health: " + curHealth + " hitted: " + hit);
+        Debug.Log(this.name + "Current health: " + curHealth + " hitted: " + hit);
+      
 
         if (curHealth < 0)
         {
             GameManager.playerLose(this.name);
 
+        }
+        else {
         }
         RpcUpdateHealth();
     }
@@ -38,7 +45,11 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcUpdateHealth()
     {
-        health.text = curHealth.ToString();
+        actions.SendMessage("Damage", SendMessageOptions.DontRequireReceiver);
+        if (health != null)
+        {
+            health.text = curHealth.ToString();
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -68,12 +79,15 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcWin()
     {
+
   //      info.text = "WIN";
     }
 
     [ClientRpc]
     public void RpcLose()
     {
-  //      info.text = "LOSE";
+        //      info.text = "LOSE";
+
+        actions.SendMessage("Death", SendMessageOptions.DontRequireReceiver);
     }
 }

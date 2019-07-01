@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 4866397131630807199}
   - component: {fileID: 1196398846785592967}
   - component: {fileID: 1443682199912783393}
+  - component: {fileID: 5185791972386132481}
   m_Layer: 0
   m_Name: Killer
   m_TagString: Untagged
@@ -505,7 +506,9 @@ MonoBehaviour:
   - {fileID: 883687566358852707}
   - {fileID: 1819019295}
   - {fileID: 6597820943237078898}
+  - {fileID: 1819019295}
   sceneCamera: {fileID: 0}
+  audioListener: {fileID: 1819019294}
 --- !u!114 &1196398846785592967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +551,28 @@ MonoBehaviour:
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.5
   m_InterpolateMovement: 0.5
+--- !u!114 &5185791972386132481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883687564929859222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fa7f5f1254e4942a747901d4f6efb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+    name: Pistol
+    damage: 10
+    range: 100
+  camera: {fileID: 1819019295}
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
+  bulletPrefab: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!1 &883687564929859360
 GameObject:
   m_ObjectHideFlags: 0
